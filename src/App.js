@@ -1,15 +1,14 @@
-//import { createElement } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
-    <h1 title="qwerty">Hi!</h1>
+    <h1 title="qwerty" className="heading">
+      Hi!
+      <em className="inside">Qwerty</em>
+    </h1>
   );
 }
 
-// function App() {
-//   return createElement('h1',{title:'qwerty'}, 'Hi!');
-// }
+// createElement('h1', {className:"heading",title:"qwerty" }, 'Hi!', createElement('em', {className:"inside"}, 'Qwerty'))
 
 export default App;
