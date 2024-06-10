@@ -1,14 +1,16 @@
 import './App.css';
+import Button from './components/Button';
+import Heading from './components/Heading';
 
 function App() {
   return (
-    <h1 title="qwerty" className="heading">
-      Hi!
-      <em className="inside">Qwerty</em>
-    </h1>
+    <>
+      <Heading />
+      <Button content="new button 1 content" number="12" />
+      <Button content="new button 2 content" number="56" />
+      <Button content="new button 3 content" number="77" />
+    </>
   );
 }
-
-// createElement('h1', {className:"heading",title:"qwerty" }, 'Hi!', createElement('em', {className:"inside"}, 'Qwerty'))
 
 export default App;
