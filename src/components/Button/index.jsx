@@ -5,9 +5,9 @@ import './style.css';
 // з props деструктуризацією дістаємо властивості
 
 function Button(props) {
-  const {content, number} = props;
+  const { content, number } = props;
   return (
-    <button className='btn'>
+    <button className="btn">
       {content} {number}
     </button>
   );
