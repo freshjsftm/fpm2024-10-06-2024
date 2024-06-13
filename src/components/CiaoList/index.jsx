@@ -27,14 +27,12 @@ class CiaoList extends Component {
       ],
     };
   }
-  mapUsers = ({ id, name, age, isMale }) => (
-    <li key={id}>
-      <Ciao name={name} age={age} isMale={isMale} />
-    </li>
+  mapUsers = ({ id, name, age, isMale }, i) => (
+    <Ciao key={i} name={name} age={age} isMale={isMale} />
   );
   render() {
     const { users } = this.state;
-    return <ul>{users.map(this.mapUsers)}</ul>;
+    return <section>{users.map(this.mapUsers)}</section>;
   }
 }
 
