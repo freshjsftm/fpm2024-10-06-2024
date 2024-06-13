@@ -26,17 +26,30 @@ class CiaoList extends Component {
         },
       ],
       isUpSortAge: true,
-      //додати властивість для напрямку сортування за іменем
+      isUpSortName: true,
     };
   }
 
-  //додати функцію для  сортування за іменем
-  sortUsersByName = () => {}
+  sortUsersByName = () => {
+    const { users, isUpSortName } = this.state;
+    this.setState({
+      users: users.toSorted((userA, userB) => {
+        const nameA = userA.name.toUpperCase(); // ignore upper and lowercase
+        const nameB = userB.name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return isUpSortName?-1:1;
+        }
+        if (nameA > nameB) {
+          return isUpSortName?1:-1;
+        }
+        return 0;
+      }),
+      isUpSortName: !isUpSortName,
+    });
+  };
 
   sortUsersByAge = () => {
     const { users, isUpSortAge } = this.state;
-    // поверхнева копія використовується для об'єктів першого порядку
-    // об'єкти першого порядку - це такі об'єкти значеннями властивостей яких є примітиви
     this.setState({
       users: users.toSorted((userA, userB) =>
         isUpSortAge ? userA.age - userB.age : userB.age - userA.age
@@ -49,12 +62,14 @@ class CiaoList extends Component {
     <Ciao key={id} name={name} age={age} isMale={isMale} />
   );
   render() {
-    const { users, isUpSortAge } = this.state;
+    const { users, isUpSortAge, isUpSortName } = this.state;
     return (
       <>
-      додати кнопку для сортування за іменем
+        <button onClick={this.sortUsersByName}>
+          sort {isUpSortName ? 'Up' : 'Down'} by name
+        </button>
         <button onClick={this.sortUsersByAge}>
-          sort {isUpSortAge ? 'Up' : 'Down'} by age{' '}
+          sort {isUpSortAge ? 'Up' : 'Down'} by age
         </button>
         <section>{users.map(this.mapUsers)}</section>
       </>
