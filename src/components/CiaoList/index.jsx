@@ -25,19 +25,23 @@ class CiaoList extends Component {
           isMale: false,
         },
       ],
-      isUpSort: true,
+      isUpSortAge: true,
+      //додати властивість для напрямку сортування за іменем
     };
   }
 
+  //додати функцію для  сортування за іменем
+  sortUsersByName = () => {}
+
   sortUsersByAge = () => {
-    const { users, isUpSort } = this.state;
+    const { users, isUpSortAge } = this.state;
     // поверхнева копія використовується для об'єктів першого порядку
     // об'єкти першого порядку - це такі об'єкти значеннями властивостей яких є примітиви
     this.setState({
       users: users.toSorted((userA, userB) =>
-        isUpSort ? userA.age - userB.age : userB.age - userA.age
+        isUpSortAge ? userA.age - userB.age : userB.age - userA.age
       ),
-      isUpSort: !isUpSort,
+      isUpSortAge: !isUpSortAge,
     });
   };
 
@@ -45,11 +49,12 @@ class CiaoList extends Component {
     <Ciao key={id} name={name} age={age} isMale={isMale} />
   );
   render() {
-    const { users, isUpSort } = this.state;
+    const { users, isUpSortAge } = this.state;
     return (
       <>
+      додати кнопку для сортування за іменем
         <button onClick={this.sortUsersByAge}>
-          sort {isUpSort ? 'Up' : 'Down'} by age{' '}
+          sort {isUpSortAge ? 'Up' : 'Down'} by age{' '}
         </button>
         <section>{users.map(this.mapUsers)}</section>
       </>
