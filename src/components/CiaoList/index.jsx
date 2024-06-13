@@ -43,8 +43,8 @@ class CiaoList extends Component {
     this.setState({ users: usersCopy });
   };
 
-  mapUsers = ({ id, name, age, isMale }, i) => (
-    <Ciao key={i} name={name} age={age} isMale={isMale} />
+  mapUsers = ({ id, name, age, isMale }) => (
+    <Ciao key={id} name={name} age={age} isMale={isMale} />
   );
   render() {
     const { users } = this.state;
