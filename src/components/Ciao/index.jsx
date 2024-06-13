@@ -10,6 +10,7 @@ class Ciao extends Component {
   }
   handlerStateIsHi = () => {
     const { isHi } = this.state; //дістали поточне значення стану
+    //const isHiCopy = !isHi;
     this.setState({ isHi: !isHi }); // встановили нове значення стану
   };
   render() {
