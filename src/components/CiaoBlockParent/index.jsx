@@ -37,43 +37,28 @@ class CiaoBlockParent extends Component {
     };
   }
 
-  sortUsersByName = () => {
-    const { users, isUpSortName } = this.state;
+  sortUsersByName = (newUsers) => {
+    const { isUpSortName } = this.state;
     this.setState({
-      users: users.toSorted((userA, userB) => {
-        const nameA = userA.name.toUpperCase();
-        const nameB = userB.name.toUpperCase();
-        if (nameA < nameB) {
-          return isUpSortName ? -1 : 1;
-        }
-        if (nameA > nameB) {
-          return isUpSortName ? 1 : -1;
-        }
-        return 0;
-      }),
+      users: newUsers,
       isUpSortName: !isUpSortName,
     });
   };
 
-  sortUsersByAge = () => {
-    const { users, isUpSortAge } = this.state;
+  sortUsersByAge = (newUsers) => {
+    const { isUpSortAge } = this.state;
     this.setState({
-      users: users.toSorted((userA, userB) =>
-        isUpSortAge ? userA.age - userB.age : userB.age - userA.age
-      ),
+      users: newUsers,
       isUpSortAge: !isUpSortAge,
     });
   };
 
-  userSelected = (id) => {
-    const { users } = this.state;
+  userSelectedState = (newUsers) => {
     this.setState({
-      users: users.map((user) => ({
-        ...user,
-        isSelected: user.id === id ? !user.isSelected : user.isSelected,
-      })),
+      users: newUsers,
     });
   };
+
   render() {
     const { users, isUpSortAge, isUpSortName } = this.state;
     return (
@@ -83,8 +68,9 @@ class CiaoBlockParent extends Component {
           isUpSortName={isUpSortName}
           sortUsersByName={this.sortUsersByName}
           sortUsersByAge={this.sortUsersByAge}
+          users={users}
         />
-        <CiaoList users={users} userSelected={this.userSelected} />
+        <CiaoList users={users} userSelectedState={this.userSelectedState} />
         <hr />
         <SelectedCiaoList users={users} />
       </>

@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class SelectedCiaoList extends Component {
-  render() {
-    const { users } = this.props;
-    const selectedUsers = users.filter((user) => user.isSelected);
-    return (
-      <ul>
-        {selectedUsers.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
-    );
-  }
+function SelectedCiaoList({ users }) {
+  const selectedUsers = users.filter((user) => user.isSelected);
+  return (
+    <ul>
+      {selectedUsers.map((user) => (
+        <li key={user.id}>{user.name}</li>
+      ))}
+    </ul>
+  );
 }
 
 export default SelectedCiaoList;
