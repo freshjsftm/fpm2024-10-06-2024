@@ -32,7 +32,6 @@ class CiaoBlockParent extends Component {
         ...user,
         isSelected: false,
       })),
-
       isUpSortAge: true,
       isUpSortName: true,
     };

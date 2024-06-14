@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 class SelectedCiaoList extends Component {
   render() {
     const { users } = this.props;
-    const selectedUsers = users.filter((user) => user.isSelect);
+    const selectedUsers = users.filter((user) => user.isSelected);
     return (
       <ul>
         {selectedUsers.map((user) => (
-          <li key={user.id}>user.name</li>
+          <li key={user.id}>{user.name}</li>
         ))}
       </ul>
     );
