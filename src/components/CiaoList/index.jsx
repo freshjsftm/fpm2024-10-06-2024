@@ -70,17 +70,10 @@ class CiaoList extends Component {
     });
   };
 
-  mapUsers = ({ id, name, age, isMale, isSelected }) => (
-    <Ciao
-      key={id}
-      id={id}
-      name={name}
-      age={age}
-      isMale={isMale}
-      isSelected={isSelected}
-      userSelected={this.userSelected}
-    />
+  mapUsers = (user) => (
+    <Ciao key={user.id} user={user} userSelected={this.userSelected} />
   );
+
   render() {
     const { users, isUpSortAge, isUpSortName } = this.state;
     return (
