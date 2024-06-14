@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Ciao from '../Ciao';
+import CiaoList from './CiaoList';
+import SortedGroupCiaoList from './SortedGroupCiaoList';
+import SelectedCiaoList from './SelectedCiaoList';
 
 const USERS_FROM_DB = [
   {
@@ -22,7 +24,7 @@ const USERS_FROM_DB = [
   },
 ];
 
-class CiaoList extends Component {
+class CiaoBlockParent extends Component {
   constructor() {
     super();
     this.state = {
@@ -63,7 +65,7 @@ class CiaoList extends Component {
       isUpSortAge: !isUpSortAge,
     });
   };
-  //батьківський елемент описує механізм через який дочірній елемент зможе змінити стан батьківського
+
   userSelected = (id) => {
     const { users } = this.state;
     this.setState({
@@ -73,25 +75,22 @@ class CiaoList extends Component {
       })),
     });
   };
-
-  mapUsers = (user) => (
-    <Ciao key={user.id} user={user} userSelected={this.userSelected} />
-  );
-
   render() {
     const { users, isUpSortAge, isUpSortName } = this.state;
     return (
       <>
-        <button onClick={this.sortUsersByName}>
-          sort {isUpSortName ? 'Up' : 'Down'} by name
-        </button>
-        <button onClick={this.sortUsersByAge}>
-          sort {isUpSortAge ? 'Up' : 'Down'} by age
-        </button>
-        <section>{users.map(this.mapUsers)}</section>
+        <SortedGroupCiaoList
+          isUpSortAge={isUpSortAge}
+          isUpSortName={isUpSortName}
+          sortUsersByName={this.sortUsersByName}
+          sortUsersByAge={this.sortUsersByAge}
+        />
+        <CiaoList users={users} userSelected={this.userSelected} />
+        <hr />
+        <SelectedCiaoList users={users} />
       </>
     );
   }
 }
 
-export default CiaoList;
+export default CiaoBlockParent;

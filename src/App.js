@@ -1,10 +1,10 @@
 import './App.css';
-import CiaoList from './components/CiaoList';
+import CiaoBlockParent from './components/CiaoBlockParent';
 
 function App() {
   return (
     <>
-      <CiaoList />
+      <CiaoBlockParent />
     </>
   );
 }
