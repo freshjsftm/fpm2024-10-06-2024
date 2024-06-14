@@ -1,30 +1,32 @@
 import React, { Component } from 'react';
 import Ciao from '../Ciao';
 
+const USERS_FROM_DB = [
+  {
+    id: 6,
+    name: 'Fred',
+    age: 45,
+    isMale: true,
+  },
+  {
+    id: 2,
+    name: 'Bred',
+    age: 51,
+    isMale: true,
+  },
+  {
+    id: 23,
+    name: 'Anna',
+    age: 24,
+    isMale: false,
+  },
+];
+
 class CiaoList extends Component {
   constructor() {
     super();
     this.state = {
-      users: [
-        {
-          id: 6,
-          name: 'Fred',
-          age: 45,
-          isMale: true,
-        },
-        {
-          id: 2,
-          name: 'Bred',
-          age: 51,
-          isMale: true,
-        },
-        {
-          id: 23,
-          name: 'Anna',
-          age: 24,
-          isMale: false,
-        },
-      ],
+      users: USERS_FROM_DB.map((user) => ({ ...user, isSelected: false })),
       isUpSortAge: true,
       isUpSortName: true,
     };
@@ -34,13 +36,13 @@ class CiaoList extends Component {
     const { users, isUpSortName } = this.state;
     this.setState({
       users: users.toSorted((userA, userB) => {
-        const nameA = userA.name.toUpperCase(); // ignore upper and lowercase
-        const nameB = userB.name.toUpperCase(); // ignore upper and lowercase
+        const nameA = userA.name.toUpperCase();
+        const nameB = userB.name.toUpperCase();
         if (nameA < nameB) {
-          return isUpSortName?-1:1;
+          return isUpSortName ? -1 : 1;
         }
         if (nameA > nameB) {
-          return isUpSortName?1:-1;
+          return isUpSortName ? 1 : -1;
         }
         return 0;
       }),
@@ -57,9 +59,27 @@ class CiaoList extends Component {
       isUpSortAge: !isUpSortAge,
     });
   };
+  //батьківський елемент описує механізм через який дочірній елемент зможе змінити стан батьківського
+  userSelected = (id) => {
+    const { users } = this.state;
+    this.setState({
+      users: users.map((user) => ({
+        ...user,
+        isSelected: user.id === id ? !user.isSelected : user.isSelected,
+      })),
+    });
+  };
 
-  mapUsers = ({ id, name, age, isMale }) => (
-    <Ciao key={id} name={name} age={age} isMale={isMale} />
+  mapUsers = ({ id, name, age, isMale, isSelected }) => (
+    <Ciao
+      key={id}
+      id={id}
+      name={name}
+      age={age}
+      isMale={isMale}
+      isSelected={isSelected}
+      userSelected={this.userSelected}
+    />
   );
   render() {
     const { users, isUpSortAge, isUpSortName } = this.state;

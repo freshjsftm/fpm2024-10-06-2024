@@ -5,19 +5,18 @@ class Ciao extends Component {
     super();
     this.state = {
       isHi: true,
-      isSelect: false,
     };
   }
   handlerStateIsHi = () => {
-    const { isHi } = this.state; //дістали поточне значення стану
-    //const isHiCopy = !isHi;
-    this.setState({ isHi: !isHi }); // встановили нове значення стану
+    const { isHi } = this.state; 
+    this.setState({ isHi: !isHi }); 
   };
   render() {
     const { isHi } = this.state;
-    const { name, age, isMale } = this.props;
+    const { id, name, age, isMale, isSelected, userSelected } = this.props;
+    const colorBG = isSelected ? 'aqua':'#eee';
     return (
-      <article>
+      <article onClick={()=>{userSelected(id)}} style={{backgroundColor:colorBG}}>
         <h2>{isHi ? 'Hi' : 'Bye'}, {name}! ({age})</h2>
         <button onClick={this.handlerStateIsHi}>switch</button>
         <p>gender: {isMale ? 'male' : 'female'} </p>
