@@ -7,11 +7,13 @@ class Ciao extends Component {
       isHi: true,
     };
   }
-  handlerStateIsHi = () => {
+  handlerStateIsHi = (event) => {
+    event.stopPropagation();
     const { isHi } = this.state;
     this.setState({ isHi: !isHi });
   };
-  handlerClickSelect = () => {
+  handlerClickSelect = (event) => {
+    event.stopPropagation();
     const {
       user: { id } ,
       userSelected,

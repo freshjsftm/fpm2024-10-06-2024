@@ -26,7 +26,11 @@ class CiaoList extends Component {
   constructor() {
     super();
     this.state = {
-      users: USERS_FROM_DB.map((user) => ({ ...user, isSelected: false })),
+      users: USERS_FROM_DB.map((user) => ({
+        ...user,
+        isSelected: false,
+      })),
+
       isUpSortAge: true,
       isUpSortName: true,
     };
