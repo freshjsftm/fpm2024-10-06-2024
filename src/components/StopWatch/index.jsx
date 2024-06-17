@@ -4,13 +4,17 @@ class StopWatch extends Component {
   constructor() {
     super();
     this.state = {
-      time: 0,
+      time: new Date(0, 0, 0, 0, 0, 0, 0),
     };
     this.identificator = null;
   }
 
   tick = () => {
-    this.setState({ time: this.state.time + 1 });
+    const { time } = this.state;
+    // state inmutable!!! copy for state
+    const copyTime = new Date(time.valueOf());
+    copyTime.setSeconds(copyTime.getSeconds() + 1);
+    this.setState({ time: copyTime });
   };
   start = () => {
     if (this.identificator === null) {
@@ -23,7 +27,7 @@ class StopWatch extends Component {
   };
   reset = () => {
     this.stop();
-    this.setState({ time: 0 });
+    this.setState({ time: new Date(0, 0, 0, 0, 0, 0, 0) });
   };
 
   componentDidMount() {
@@ -41,7 +45,7 @@ class StopWatch extends Component {
 
     return (
       <article>
-        <h2>{time}</h2>
+        <h2>{time.toLocaleTimeString('en-GB')}</h2>
         <button onClick={this.start}>start</button>
         <button onClick={this.stop}>stop</button>
         <button onClick={this.reset}>reset</button>
