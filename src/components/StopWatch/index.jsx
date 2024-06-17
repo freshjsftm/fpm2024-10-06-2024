@@ -10,11 +10,20 @@ class StopWatch extends Component {
   }
 
   tick = () => {
-    const { time } = this.state;
+    //const { time } = this.state;
     // state inmutable!!! copy for state
-    const copyTime = new Date(time.valueOf());
-    copyTime.setSeconds(copyTime.getSeconds() + 1);
-    this.setState({ time: copyTime });
+    //const copyTime = new Date(time.valueOf());
+    //copyTime.setSeconds(copyTime.getSeconds() + 1);
+    // виклик setState нижче рядком НЕ гарантує негайну зміну стану!!!
+    //this.setState({ time: copyTime });
+    
+    // виклик setState нижче рядком гарантовано запуститься після застосування оновлення
+    this.setState((state, props) => {
+      const { time } = state;
+      const copyTime = new Date(time.valueOf());
+      copyTime.setSeconds(copyTime.getSeconds() + 1);
+      return { time: copyTime };
+    });
   };
   start = () => {
     if (this.identificator === null) {
