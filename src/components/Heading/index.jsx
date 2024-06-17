@@ -1,14 +1,14 @@
 import React from 'react';
-import './style.css';
+import styles from './Heading.module.css';
 import Button from '../Button';
 
 
 const Heading = () => {
   return (
-    <h1 title="qwerty" className="heading">
+    <h1 title="qwerty" className={styles.heading}>
       Hi!
       <Button content="!!!" number="000"/>
-      <em className="inside">Qwerty</em>
+      <em className={styles.inside}>Qwerty</em>
     </h1>
   );
 };

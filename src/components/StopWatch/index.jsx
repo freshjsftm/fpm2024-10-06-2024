@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './StopWatch.module.css';
 
 class StopWatch extends Component {
   constructor() {
@@ -10,14 +11,6 @@ class StopWatch extends Component {
   }
 
   tick = () => {
-    //const { time } = this.state;
-    // state inmutable!!! copy for state
-    //const copyTime = new Date(time.valueOf());
-    //copyTime.setSeconds(copyTime.getSeconds() + 1);
-    // виклик setState нижче рядком НЕ гарантує негайну зміну стану!!!
-    //this.setState({ time: copyTime });
-    
-    // виклик setState нижче рядком гарантовано запуститься після застосування оновлення
     this.setState((state, props) => {
       const { time } = state;
       const copyTime = new Date(time.valueOf());
@@ -53,8 +46,8 @@ class StopWatch extends Component {
     const { time } = this.state;
 
     return (
-      <article>
-        <h2>{time.toLocaleTimeString('en-GB')}</h2>
+      <article className={styles.container}>
+        <h2 className={styles.heading}>{time.toLocaleTimeString('en-GB')}</h2>
         <button onClick={this.start}>start</button>
         <button onClick={this.stop}>stop</button>
         <button onClick={this.reset}>reset</button>
