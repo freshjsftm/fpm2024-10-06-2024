@@ -1,12 +1,29 @@
+import { Component } from 'react';
 import './App.css';
-import CiaoBlockParent from './components/CiaoBlockParent';
+import StopWatch from './components/StopWatch';
 
-function App() {
-  return (
-    <>
-      <CiaoBlockParent />
-    </>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isVisible: true,
+    };
+  }
+  render() {
+    const { isVisible } = this.state;
+    return (
+      <>
+        <button
+          onClick={() => {
+            this.setState({ isVisible: !isVisible });
+          }}
+        >
+          switch {isVisible ? 'hidden' : 'visible'}
+        </button>
+        {isVisible && <StopWatch />}
+      </>
+    );
+  }
 }
 
 export default App;
