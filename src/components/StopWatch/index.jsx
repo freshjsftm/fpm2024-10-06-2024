@@ -49,7 +49,7 @@ class StopWatch extends Component {
       <article className={styles.container}>
         <h2 className={styles.heading}>{time.toLocaleTimeString('en-GB')}</h2>
         <button onClick={this.start}>start</button>
-        <button onClick={this.stop}>stop</button>
+        <button onClick={this.stop} className={styles['btn-stop']}>stop</button>
         <button onClick={this.reset}>reset</button>
       </article>
     );

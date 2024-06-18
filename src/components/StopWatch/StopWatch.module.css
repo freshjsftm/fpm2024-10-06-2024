@@ -4,5 +4,8 @@
   text-align: center;
 }
 .heading{
-  color: blue;
+  color: violet;
+}
+.btn-stop{
+  background-color: red;
 }
