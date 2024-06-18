@@ -1,14 +1,10 @@
 import './App.css';
-import Heading from './components/Heading';
-import StopWatch from './components/StopWatch';
-import StopWatchTimeOut from './components/StopWatchTimeOut';
+import SignInForm from './components/SignInForm';
 
 function App() {
   return (
     <>
-      <StopWatch />
-      <Heading />
-      <StopWatchTimeOut />
+      <SignInForm />
     </>
   );
 }
