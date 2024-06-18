@@ -1,41 +1,59 @@
 import React, { Component } from 'react';
 import styles from './SignInForm.module.css';
 
+const initialState = {
+  email: '',
+  password: '',
+  login: '',
+};
+
 class SignInForm extends Component {
   constructor() {
     super();
     this.state = {
-      email: '',
-      password: '',
+      ...initialState,
     };
   }
   handlerSubmit = (event) => {
     event.preventDefault();
+    console.log(event.target.login.value);
     console.log(event.target.email.value);
     console.log(event.target.password.value);
-    //event.target.reset(); // clear elements form - НЕ працює бл головний стан!!!
-    this.setState({ email: '', password: '' });
+    this.setState({ ...initialState });
   };
-  handlerEmail = ({ target: { value } }) => this.setState({ email: value });
-  handlerPassword = ({ target: { value } }) =>
-    this.setState({ password: value });
+  // handlerEmail =    ({ target: { value } }) => this.setState({ email: value });
+  // handlerPassword = ({ target: { value } }) => this.setState({ password: value });
+
+  // handlerEmail =    ({ target: { name, value } }) => this.setState({ [name]: value }); //name = email
+  // handlerPassword = ({ target: { name, value } }) => this.setState({ [name]: value });
+
+  handlerChange = ({ target: { name, value } }) =>
+    this.setState({ [name]: value });
+
   render() {
-    const { email, password } = this.state;
+    const { login, email, password } = this.state;
     return (
       <form className={styles.form} onSubmit={this.handlerSubmit}>
+        <input
+          type="text"
+          name="login"
+          placeholder="login"
+          value={login}
+          onChange={this.handlerChange}
+        />
         <input
           type="email"
           name="email"
           placeholder="email"
           value={email}
-          onChange={this.handlerEmail}
+          onChange={this.handlerChange}
         />
         <input
           type="password"
           name="password"
           placeholder="password"
           value={password}
-          onChange={this.handlerPassword}
+          onChange={this.handlerChange}
         />
         <input type="submit" value="sign in" />
       </form>
