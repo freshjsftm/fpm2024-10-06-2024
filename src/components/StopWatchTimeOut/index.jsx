@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
-import styles from './StopWatch.module.css';
+import styles from './StopWatchTimeOut.module.css';
 
-class StopWatch extends Component {
+class StopWatchTimeOut extends Component {
   constructor() {
     super();
     this.state = {
       time: new Date(0, 0, 0, 0, 0, 0, 0),
+      isRuning: false,
     };
     this.identificator = null;
   }
 
   tick = () => {
     this.setState((state, props) => {
-      const { time } = state; //12
-      const copyTime = new Date(time.valueOf()); //12
-      copyTime.setSeconds(copyTime.getSeconds() + 1); //12+1
+      const { time } = state;
+      const copyTime = new Date(time.valueOf());
+      copyTime.setSeconds(copyTime.getSeconds() + 1);
       return { time: copyTime };
     });
   };
   start = () => {
     if (this.identificator === null) {
-      this.identificator = setInterval(this.tick, 1000);
+      this.setState({ isRuning: true });
+      //this.identificator = setTimeout(this.tick, 1000);
     }
   };
   stop = () => {
-    clearInterval(this.identificator);
+    this.setState({ isRuning: false });
+    clearTimeout(this.identificator);
     this.identificator = null;
   };
   reset = () => {
@@ -36,7 +39,14 @@ class StopWatch extends Component {
     this.start();
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    const { isRuning } = this.state;
+    if (isRuning) {
+      // this.stop();
+      // this.start();
+      this.identificator = setTimeout(this.tick, 1000);
+    }
+  }
 
   componentWillUnmount() {
     this.stop();
@@ -56,4 +66,4 @@ class StopWatch extends Component {
   }
 }
 
-export default StopWatch;
+export default StopWatchTimeOut;
