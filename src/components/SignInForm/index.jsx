@@ -21,11 +21,6 @@ class SignInForm extends Component {
     console.log(event.target.password.value);
     this.setState({ ...initialState });
   };
-  // handlerEmail =    ({ target: { value } }) => this.setState({ email: value });
-  // handlerPassword = ({ target: { value } }) => this.setState({ password: value });
-
-  // handlerEmail =    ({ target: { name, value } }) => this.setState({ [name]: value }); //name = email
-  // handlerPassword = ({ target: { name, value } }) => this.setState({ [name]: value });
 
   handlerChange = ({ target: { name, value } }) =>
     this.setState({ [name]: value });
