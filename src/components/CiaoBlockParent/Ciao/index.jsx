@@ -47,4 +47,15 @@ Ciao.propTypes = {
   userSelected: PropTypes.func,
 };
 
+Ciao.defaultProps = {
+  user: {
+    id: 0,
+    name: 'Noname',
+    age: 32,
+    isMale: true,
+    isSelected: false,
+  },
+  userSelected:() => {}
+}
+
 export default Ciao;

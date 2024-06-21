@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Button content="string"/>
-      <Ciao user={{}} userSelected={() => {}} />
+      <Ciao  />
     </>
   );
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.css';
 
-function Button({ content='content', number=5}) {
+function Button({ content='content', number=null}) {
   return (
     <button className="btn">
       {content} {number}
