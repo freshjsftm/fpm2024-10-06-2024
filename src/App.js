@@ -1,14 +1,12 @@
 import './App.css';
-import Button from './components/Button';
-import Ciao from './components/CiaoBlockParent/Ciao';
+import MyLink from './components/MyLink';
 
 function App() {
   return (
     <>
-      <Button content="string" />
-      <Ciao
-        user={{ id: 24, name: 'Max', age: 33, isMale: true, isSelected: false }}
-      />
+     <MyLink href='https://legacy.reactjs.org/' content="react"/>
+     <br />
+     <MyLink />
     </>
   );
 }
