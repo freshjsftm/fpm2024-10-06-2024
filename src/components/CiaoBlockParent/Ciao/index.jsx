@@ -42,8 +42,16 @@ class Ciao extends Component {
   }
 }
 
+export const userPropType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  isMale: PropTypes.bool.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+})
+
 Ciao.propTypes = {
-  user: PropTypes.object,
+  user: userPropType.isRequired,
   userSelected: PropTypes.func,
 };
 
@@ -53,7 +61,7 @@ Ciao.defaultProps = {
     name: 'Noname',
     age: 32,
     isMale: true,
-    isSelected: false,
+    isSelected: true,
   },
   userSelected:() => {}
 }

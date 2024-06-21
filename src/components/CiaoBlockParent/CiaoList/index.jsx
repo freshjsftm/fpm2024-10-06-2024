@@ -1,7 +1,9 @@
 import React from 'react';
-import Ciao from '../Ciao';
+import PropTypes from 'prop-types';
 
-function CiaoList({ users, userSelectedState }) {
+import Ciao, { userPropType } from '../Ciao';
+
+function CiaoList({ users=[], userSelectedState=()=>{} }) {
   
   const userSelected = (id) => {
     const newUsers = users.map((user) => ({
@@ -16,6 +18,11 @@ function CiaoList({ users, userSelectedState }) {
   );
 
   return <section>{users.map(mapUsers)}</section>;
+}
+
+CiaoList.propTypes = {
+  users: PropTypes.arrayOf(userPropType).isRequired,
+  userSelectedState: PropTypes.func,
 }
 
 export default CiaoList;
