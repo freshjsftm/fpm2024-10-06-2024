@@ -1,10 +1,12 @@
 import './App.css';
-import SignInForm from './components/SignInForm';
+import Button from './components/Button';
+import Ciao from './components/CiaoBlockParent/Ciao';
 
 function App() {
   return (
     <>
-      <SignInForm />
+      <Button content="string"/>
+      <Ciao user={{}} userSelected={() => {}} />
     </>
   );
 }

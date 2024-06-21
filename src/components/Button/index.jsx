@@ -1,8 +1,7 @@
 import React from 'react';
-import './style.css';
+import PropTypes from 'prop-types';
 
-// props - це аналог атрибуту у тега
-// з props деструктуризацією дістаємо властивості
+import './style.css';
 
 function Button(props) {
   const { content, number } = props;
@@ -11,6 +10,16 @@ function Button(props) {
       {content} {number}
     </button>
   );
+}
+
+Button.propTypes = {
+  content: PropTypes.string.isRequired,
+  number: PropTypes.number,
+}
+
+Button.defaultProps = {
+  content: 'content',
+  number: 5,
 }
 
 export default Button;

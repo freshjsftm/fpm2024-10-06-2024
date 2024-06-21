@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Ciao extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isHi: true,
     };
@@ -15,7 +16,7 @@ class Ciao extends Component {
   handlerClickSelect = (event) => {
     event.stopPropagation();
     const {
-      user: { id } ,
+      user: { id },
       userSelected,
     } = this.props;
     userSelected(id);
@@ -40,5 +41,10 @@ class Ciao extends Component {
     );
   }
 }
+
+Ciao.propTypes = {
+  user: PropTypes.object,
+  userSelected: PropTypes.func,
+};
 
 export default Ciao;
