@@ -1,28 +1,22 @@
 import './App.css';
-
-function List(props) {
-  const { title, numbers, children } = props;
-  return (
-    <article>
-      <h2 title={title}>List {numbers}</h2>
-      <ul>{children}</ul>
-    </article>
-  );
-}
+import StopWatch from './components/StopWatch';
+import Container from './components/Grid/Container';
+import Row from './components/Grid/Row';
+import Col from './components/Grid/Col';
 
 function App() {
   return (
-    <>
-      <List title="text for title" numbers={2}>
-        <li>Max</li>
-        <li>Anna</li>
-      </List>
-      <List title="text for title" numbers={3}>
-        <li>item 1</li>
-        <li>item 2</li>
-        <li>item 3</li>
-      </List>
-    </>
+    <Container>
+      <Row>
+        <Col colNum={5}>
+          <StopWatch />
+        </Col>
+        <Col colNum={2}></Col>
+        <Col colNum={5}>
+          <StopWatch />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
