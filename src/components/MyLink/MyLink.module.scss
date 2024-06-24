@@ -1,4 +1,4 @@
-@use '/src/common/styles/colors' as color;
+@use '/src/common/styles/colors' as *;
 
 $size: 200px;
 $padding-size: 10px;
@@ -7,7 +7,7 @@ $padding-size: 10px;
   width: $size;
   padding: $padding-size;
   border: {
-    color: color.$colorMain;
+    color: $colorMain;
     width: 2px;
     style: dotted;
   }
