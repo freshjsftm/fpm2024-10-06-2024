@@ -13,6 +13,6 @@ $padding-size: 10px;
   }
   text-align: center;
   &:hover{
-    background-color: aquamarine;
+    background-color: $colorBgHover;
   }
 }
