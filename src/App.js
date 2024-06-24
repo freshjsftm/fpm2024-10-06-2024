@@ -1,5 +1,4 @@
 import './App.css';
-import StopWatch from './components/StopWatch';
 import Container from './components/Grid/Container';
 import Row from './components/Grid/Row';
 import Col from './components/Grid/Col';
@@ -8,12 +7,17 @@ function App() {
   return (
     <Container>
       <Row>
-        <Col colNum={5}>
-          <StopWatch />
+        <Col colClass={{ sm: 12, md: 6, lg: 3 }}>
+          <p>example text</p>
         </Col>
-        <Col colNum={2}></Col>
-        <Col colNum={5}>
-          <StopWatch />
+        <Col colClass={{ sm: 12, md: 6, lg: 3 }}>
+          <p>example text</p>
+        </Col>
+        <Col colClass={{ sm: 12, md: 6, lg: 3 }}>
+          <p>example text</p>
+        </Col>
+        <Col colClass={{ sm: 12, md: 6, lg: 3 }}>
+          <p>example text</p>
         </Col>
       </Row>
     </Container>
