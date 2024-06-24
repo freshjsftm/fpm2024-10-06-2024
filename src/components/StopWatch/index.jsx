@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 import styles from './StopWatch.module.scss';
 
 class StopWatch extends Component {
@@ -44,12 +45,16 @@ class StopWatch extends Component {
 
   render() {
     const { time } = this.state;
-
+    // const classNameArticle = `${styles.container} ${styles.wrap}`;
+    const classNameArticle = cx(styles.container, 
+      { [styles.wrap]: false });
     return (
-      <article className={styles.container}>
+      <article className={classNameArticle}>
         <h2 className={styles.heading}>{time.toLocaleTimeString('en-GB')}</h2>
         <button onClick={this.start}>start</button>
-        <button onClick={this.stop} className={styles['btn-stop']}>stop</button>
+        <button onClick={this.stop} className={styles['btn-stop']}>
+          stop
+        </button>
         <button onClick={this.reset}>reset</button>
       </article>
     );

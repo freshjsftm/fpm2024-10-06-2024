@@ -5,6 +5,10 @@
 @import '/src/common/styles/colors';
 
 $grap: 20px;
+.wrap{
+  width: 70%;
+  margin: auto;
+}
 .container {
   display: flex;
   flex-direction: column;
