@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import styles from './MyLink.module.scss';
 
 const MyLink = ({href="#", content='text'}) => {
   return (
-    <a href={href}>
+    <a className={styles.link} href={href}>
       {content}
     </a>
   );
