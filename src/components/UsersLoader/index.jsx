@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getUsers } from '../../api';
+import Spinner from '../Spinner';
 
 class UsersLoader extends Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class UsersLoader extends Component {
   }
 
   load = () => {
-    const {currentPage} = this.state;
+    const { currentPage } = this.state;
     this.setState({ isPending: true });
-    getUsers({page:currentPage,results:5, nat:'gb'})
+    getUsers({ page: currentPage, results: 5, nat: 'gb' })
       .then((data) => {
         if (data.error) {
           throw new Error(data.error);
@@ -29,14 +30,14 @@ class UsersLoader extends Component {
       .finally(() => {
         this.setState({ isPending: false });
       });
-  }
+  };
 
   componentDidMount() {
     this.load();
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if(prevState.currentPage !== this.state.currentPage){
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.currentPage !== this.state.currentPage) {
       this.load();
     }
   }
@@ -59,7 +60,7 @@ class UsersLoader extends Component {
   render() {
     const { users, isPending, error, currentPage } = this.state;
     if (isPending) {
-      return <div>Loading...</div>;
+      return <Spinner />;
     }
     if (error) {
       return <div>ERROR!!!</div>;
