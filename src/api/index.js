@@ -1,5 +1,12 @@
 import queryString from 'query-string';
-
+/**
+ * 
+ * @param {object} options 
+ * @param {number} options.page 
+ * @param {number} options.results
+ * @param {string} options.seed
+ * @returns {Promise}
+ */
 export const getUsers = (options = {}) => {
   const defaultOptions = {
     seed: 'fpm2024-1',
