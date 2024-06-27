@@ -11,13 +11,14 @@ class UsersLoader extends Component {
       isPending: false,
       error: null,
       currentPage: 1,
+      currentResults: 5,
     };
   }
 
   load = () => {
-    const { currentPage } = this.state;
+    const { currentPage, currentResults } = this.state;
     this.setState({ isPending: true });
-    getUsers({ page: currentPage, results: 5, nat: 'gb' })
+    getUsers({ page: currentPage, results: currentResults })
       .then((data) => {
         if (data.error) {
           throw new Error(data.error);
@@ -37,7 +38,10 @@ class UsersLoader extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.currentPage !== this.state.currentPage) {
+    if (
+      prevState.currentPage !== this.state.currentPage ||
+      prevState.currentResults !== this.state.currentResults
+    ) {
       this.load();
     }
   }
@@ -57,8 +61,11 @@ class UsersLoader extends Component {
       return { currentPage: currentPage + 1 };
     });
   };
+  handlerResults = ({ target: { value } }) => {
+    this.setState({ currentResults: Number(value) });
+  };
   render() {
-    const { users, isPending, error, currentPage } = this.state;
+    const { users, isPending, error, currentPage, currentResults } = this.state;
     if (isPending) {
       return <Spinner />;
     }
@@ -72,6 +79,38 @@ class UsersLoader extends Component {
           <button onClick={this.prevPage}>&lt; {/*&lt; - unicode */} </button>
           <span> {currentPage} </span>
           <button onClick={this.nextPage}>&gt;</button>
+          <div>
+            <label>
+              <input
+                name="results"
+                type="radio"
+                value={5}
+                checked={currentResults === 5}
+                onChange={this.handlerResults}
+              />
+              5
+            </label>
+            <label>
+              <input
+                name="results"
+                type="radio"
+                value={10}
+                checked={currentResults === 10}
+                onChange={this.handlerResults}
+              />
+              10
+            </label>
+            <label>
+              <input
+                name="results"
+                type="radio"
+                value={15}
+                checked={currentResults === 15}
+                onChange={this.handlerResults}
+              />
+              15
+            </label>
+          </div>
         </div>
         {users.length ? (
           <ul>{users.map(this.showUsers)}</ul>
