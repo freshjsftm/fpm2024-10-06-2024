@@ -16,7 +16,7 @@ class UsersLoader extends Component {
   load = () => {
     const {currentPage} = this.state;
     this.setState({ isPending: true });
-    getUsers(currentPage)
+    getUsers({page:currentPage,results:5, nat:'gb'})
       .then((data) => {
         if (data.error) {
           throw new Error(data.error);
