@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { getUsers } from '../../api';
 import Spinner from '../Spinner';
 
+const nats = ['us', 'dk', 'fr', 'gb'];
+const resultsNum = [5,10,15];
+
 class UsersLoader extends Component {
   constructor(props) {
     super(props);
@@ -69,6 +72,11 @@ class UsersLoader extends Component {
   handlerNat = ({ target: { value } }) => {
     this.setState({ currentNat: value });
   };
+  showOptions = (nat, i) => (
+    <option key={i} value={nat}>
+      {nat}
+    </option>
+  );
   render() {
     const { users, isPending, error, currentPage, currentResults, currentNat } =
       this.state;
@@ -86,10 +94,7 @@ class UsersLoader extends Component {
           <span> {currentPage} </span>
           <button onClick={this.nextPage}>&gt;</button>
           <select name="nat" value={currentNat} onChange={this.handlerNat}>
-            <option value="us">us</option>
-            <option value="dk">dk</option>
-            <option value="fr">fr</option>
-            <option value="gb">gb</option>
+            {nats.map(this.showOptions)}
           </select>
           <div>
             <label>

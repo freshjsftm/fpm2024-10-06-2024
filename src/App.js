@@ -1,10 +1,11 @@
 import './App.css';
-import UsersLoader from './components/UsersLoader';
+import WindowWork from './components/WindowWork';
+
 
 function App() {
   return (
     <>
-     <UsersLoader />
+     <WindowWork />
     </>
   );
 }
