@@ -23,3 +23,14 @@ export const getUsers = (options = {}) => {
     response.json()
   );
 };
+
+export const getEvents = (options={}) => {
+  return fetch('/data/events.json')
+  .then((response) => response.json())
+}
+
+
+export const getPhones = (options={}) => {
+  return fetch('/data/phones.json')
+  .then((response) => response.json())
+}
