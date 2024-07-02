@@ -9,9 +9,9 @@ import LoaderPage from './pages/LoaderPage';
 import EventsBlock from './pages/LoaderPage/EventsBlock';
 import PhonesBlock from './pages/LoaderPage/PhonesBlock';
 import Header from './components/Header';
-import { UserContext } from './contexts';
+import { UserContext, ThemeContext } from './contexts';
 import CONSTANTS from './constants';
-const {THEME} = CONSTANTS;
+const { THEME } = CONSTANTS;
 
 class App extends Component {
   constructor(props) {
@@ -24,33 +24,39 @@ class App extends Component {
         password: 123,
         ava: '/images/noname.webp',
       },
-      theme: THEME.LIGHT
+      theme: THEME.LIGHT,
     };
   }
+  setTheme = () => {
+    const { theme } = this.state;
+    this.setState({ theme: theme === THEME.LIGHT ? THEME.DARK : THEME.LIGHT });
+  };
   render() {
-    const { user } = this.state;
+    const { user, theme } = this.state;
     return (
       <>
-        <UserContext.Provider value={user}>
-          <BrowserRouter>
-            <Header />
-            <main>
-              <Routes>
-                <Route path="/" element={<HomePage user={user} />}></Route>
-                <Route path="/users" element={<UsersLoaderPage />}></Route>
-                <Route path="/sign-in" element={<SignInPage />}></Route>
+        <ThemeContext.Provider value={[theme, this.setTheme]}>
+          <UserContext.Provider value={user}>
+            <BrowserRouter>
+              <Header />
+              <main>
+                <Routes>
+                  <Route path="/" element={<HomePage user={user} />}></Route>
+                  <Route path="/users" element={<UsersLoaderPage />}></Route>
+                  <Route path="/sign-in" element={<SignInPage />}></Route>
 
-                <Route path="/load/" element={<LoaderPage />}>
-                  <Route path="events" element={<EventsBlock />} />
-                  <Route path="phones" element={<PhonesBlock />} />
-                </Route>
+                  <Route path="/load/" element={<LoaderPage />}>
+                    <Route path="events" element={<EventsBlock />} />
+                    <Route path="phones" element={<PhonesBlock />} />
+                  </Route>
 
-                <Route path="*" element={<ErrorPage />}></Route>
-              </Routes>
-            </main>
-            <footer>2024</footer>
-          </BrowserRouter>
-        </UserContext.Provider>
+                  <Route path="*" element={<ErrorPage />}></Route>
+                </Routes>
+              </main>
+              <footer>2024</footer>
+            </BrowserRouter>
+          </UserContext.Provider>
+        </ThemeContext.Provider>
       </>
     );
   }
