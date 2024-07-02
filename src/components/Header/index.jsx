@@ -1,5 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
+import Icon from '@mdi/react';
+import { mdiWhiteBalanceSunny, mdiWeatherNight } from '@mdi/js';
 import styles from './Header.module.scss';
 import { UserContext, ThemeContext } from '../../contexts';
 import Menu from '../Menu';
@@ -20,9 +22,11 @@ const Header = () => {
               return (
                 <header className={classNames}>
                   <Menu />
-                  <button onClick={() => {setTheme()}}>
-                    {theme === THEME.LIGHT ? 'ligth' : 'dark'}
-                  </button>
+
+                    <Icon  
+                    onClick={() => {setTheme()}} 
+                    path={theme === THEME.LIGHT ? mdiWhiteBalanceSunny  : mdiWeatherNight} size={1} />
+
                   <img src={ava} alt="ava" />
                 </header>
               );
