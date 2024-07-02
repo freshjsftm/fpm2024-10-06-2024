@@ -10,6 +10,8 @@ import EventsBlock from './pages/LoaderPage/EventsBlock';
 import PhonesBlock from './pages/LoaderPage/PhonesBlock';
 import Header from './components/Header';
 import { UserContext } from './contexts';
+import CONSTANTS from './constants';
+const {THEME} = CONSTANTS;
 
 class App extends Component {
   constructor(props) {
@@ -22,6 +24,7 @@ class App extends Component {
         password: 123,
         ava: '/images/noname.webp',
       },
+      theme: THEME.LIGHT
     };
   }
   render() {
