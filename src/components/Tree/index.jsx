@@ -1,11 +1,11 @@
 import React from 'react';
 import Parent from './Parent';
 
-const Tree = ({user}) => {
+const Tree = () => {
   return (
     <div>
-      <h2>child</h2>
-      <Parent user={user}/>
+      <h2>tree</h2>
+      <Parent/>
     </div>
   );
 }

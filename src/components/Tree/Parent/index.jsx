@@ -1,11 +1,11 @@
 import React from 'react';
 import SubParent from '../SubParent';
 
-const Parent = ({user}) => {
+const Parent = () => {
   return (
     <div>
-      <h2>child</h2>
-      <SubParent user={user}/>
+      <h2>parent</h2>
+      <SubParent />
     </div>
   );
 }

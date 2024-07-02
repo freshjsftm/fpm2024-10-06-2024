@@ -1,11 +1,11 @@
 import React from 'react';
 import CardUser from '../CardUser';
 
-const WrapperCard = ({user}) => {
+const WrapperCard = () => {
   return (
     <div>
       WrapperCard
-      <CardUser user={user}/>
+      <CardUser />
     </div>
   );
 }
