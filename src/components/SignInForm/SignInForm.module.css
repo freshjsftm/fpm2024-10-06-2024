@@ -4,3 +4,9 @@
   flex-direction: column;
   margin: auto;
 }
+.invalid{
+  background-color: #ff000030;
+}
+.valid{
+  background-color: #00ff0030;
+}
