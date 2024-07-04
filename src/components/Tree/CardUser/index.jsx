@@ -1,21 +1,26 @@
 import React from 'react';
-import { UserContext } from '../../../contexts';
+import { WithUser } from '../../HOCs';
 
-const CardUser = () => {
-  const renderUser = ({ id, name, email, password, ava }) => {
-    return (
-      <article>
-        <h3>
-          ({id}) {name}
-        </h3>
-        <h4>
-          {email} ({password})
-        </h4>
-        <img src={ava} alt="ava" width={200} />
-      </article>
-    );
-  };
-  return <UserContext.Consumer>{renderUser}</UserContext.Consumer>;
+const CardUser = ({
+  user: {
+    id = 0,
+    name = 'noname',
+    email = 'noemail@gmail.com',
+    password = 'qwerty',
+    ava = '/images/noname.webp',
+  },
+}) => {
+  return (
+    <article>
+      <h3>
+        ({id}) {name}
+      </h3>
+      <h4>
+        {email} ({password})
+      </h4>
+      <img src={ava} alt="ava" width={200} />
+    </article>
+  );
 };
 
-export default CardUser;
+export default WithUser(CardUser);
