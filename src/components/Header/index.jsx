@@ -3,39 +3,31 @@ import cx from 'classnames';
 import Icon from '@mdi/react';
 import { mdiWhiteBalanceSunny, mdiWeatherNight } from '@mdi/js';
 import styles from './Header.module.scss';
-import { UserContext, ThemeContext } from '../../contexts';
+
+import { WithTheme, WithUser } from '../HOCs';
+
 import Menu from '../Menu';
 import CONSTANTS from '../../constants';
+
 const { THEME } = CONSTANTS;
 
-const Header = () => {
+const Header = ({ theme, setTheme, user: { ava } }) => {
+  const classNames = cx(styles.header, {
+    [styles.light]: theme === THEME.LIGHT,
+    [styles.dark]: theme === THEME.DARK,
+  });
+  const handlerClickIcon = () => {
+    setTheme();
+  };
+  const currentIcon =
+    theme === THEME.LIGHT ? mdiWhiteBalanceSunny : mdiWeatherNight;
   return (
-    <ThemeContext.Consumer>
-      {([theme, setTheme]) => {
-        const classNames = cx(styles.header, {
-          [styles.light]: theme === THEME.LIGHT,
-          [styles.dark]: theme === THEME.DARK,
-        })
-        return (
-          <UserContext.Consumer>
-            {({ ava }) => {
-              return (
-                <header className={classNames}>
-                  <Menu />
-
-                    <Icon  
-                    onClick={() => {setTheme()}} 
-                    path={theme === THEME.LIGHT ? mdiWhiteBalanceSunny  : mdiWeatherNight} size={1} />
-
-                  <img src={ava} alt="ava" />
-                </header>
-              );
-            }}
-          </UserContext.Consumer>
-        );
-      }}
-    </ThemeContext.Consumer>
+    <header className={classNames}>
+      <Menu />
+      <Icon onClick={handlerClickIcon} path={currentIcon} size={1} />
+      <img src={ava} alt="ava" />
+    </header>
   );
 };
 
-export default Header;
+export default WithUser(WithTheme(Header));
