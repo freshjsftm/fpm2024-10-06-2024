@@ -1,5 +1,5 @@
 import React from 'react';
-import { WithTheme } from '../../components/HOCs';
+import { withTheme } from '../../components/HOCs';
 import WindowWork from '../../components/WindowWork';
 import Tree from '../../components/Tree';
 import CONSTANTS from '../../constants';
@@ -19,4 +19,4 @@ const HomePage = ({ theme }) => {
   );
 };
 
-export default WithTheme(HomePage);
+export default withTheme(HomePage);

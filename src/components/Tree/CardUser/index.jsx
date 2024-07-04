@@ -1,5 +1,5 @@
 import React from 'react';
-import { WithUser } from '../../HOCs';
+import { withUser } from '../../HOCs';
 
 const CardUser = ({
   user: {
@@ -23,4 +23,4 @@ const CardUser = ({
   );
 };
 
-export default WithUser(CardUser);
+export default withUser(CardUser);

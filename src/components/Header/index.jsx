@@ -4,7 +4,7 @@ import Icon from '@mdi/react';
 import { mdiWhiteBalanceSunny, mdiWeatherNight } from '@mdi/js';
 import styles from './Header.module.scss';
 
-import { WithTheme, WithUser } from '../HOCs';
+import { withTheme, withUser } from '../HOCs';
 
 import Menu from '../Menu';
 import CONSTANTS from '../../constants';
@@ -30,4 +30,4 @@ const Header = ({ theme, setTheme, user: { ava } }) => {
   );
 };
 
-export default WithUser(WithTheme(Header));
+export default withUser(withTheme(Header));
