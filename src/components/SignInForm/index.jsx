@@ -1,25 +1,24 @@
 import React from 'react';
-import * as Yup from 'yup';
-
-const SCHEMA_USER = Yup.object({
-  firstName: Yup.string().trim().required().min(3).max(20),
-  lastName: Yup.string().trim().required().min(3).max(20),
-  email: Yup.string().trim().email().required(),
-  password: Yup.string().trim().matches(/[a-z0-9]{8,16}/),
-  age: Yup.number().min(18).max(150).integer().required(),
-  isMale: Yup.boolean(),
-})
+import { SCHEMA_USER_REGISTER } from '../../utils/validationSchemas';
 
 const SignInForm = () => {
   const user = {
-    firstName: 'Alan',
+    firstName: 'brad',
     lastName: 'Alan',
     email: 'Alan@gmail.com',
     password: '123qwerty',
     age: 32,
     isMale: true,
-  }
-  console.log(SCHEMA_USER.isValidSync(user));
+  };
+  console.log(
+    SCHEMA_USER_REGISTER.validate(user)
+      .then((info) => {
+        console.log(info);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      })
+  );
   return <></>;
 };
 
