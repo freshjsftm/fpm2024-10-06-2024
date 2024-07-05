@@ -21,15 +21,11 @@ const SignInForm = (props) => {
       onSubmit={onSubmit}
       validationSchema={SCHEMA_USER_SIGNIN}
     >
-      {(formikProps) => {
-        return (
-          <Form className={styles.form}>
-            <Input type="email" name="email" placeholder="email" />
-            <Input type="password" name="password" placeholder="password" />
-            <input type="submit" value="sign in" />
-          </Form>
-        );
-      }}
+      <Form className={styles.form}>
+        <Input type="email" name="email" placeholder="email" />
+        <Input type="password" name="password" placeholder="password" />
+        <input type="submit" value="sign in" />
+      </Form>
     </Formik>
   );
 };
