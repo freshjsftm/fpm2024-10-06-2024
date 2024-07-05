@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-export const EMAIL = Yup.string().trim().email().required("Поле обов'язкове");
+export const EMAIL = Yup.string().trim().email('Будьте уважні!').required("Поле обов'язкове");
 
 export const NAME = Yup.string()
   .trim()

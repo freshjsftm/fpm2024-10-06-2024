@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import { SCHEMA_USER_SIGNIN } from '../../../utils/validationSchemas';
 import styles from './SignInForm.module.scss';
-import Input from '../Input';
+import InputValidate from '../InputValidate';
 
 const initialValues = {
   email: '',
@@ -22,8 +22,8 @@ const SignInForm = (props) => {
       validationSchema={SCHEMA_USER_SIGNIN}
     >
       <Form className={styles.form}>
-        <Input type="email" name="email" placeholder="email" />
-        <Input type="password" name="password" placeholder="password" />
+        <InputValidate type="email" name="email" placeholder="email" />
+        <InputValidate type="password" name="password" placeholder="password" />
         <input type="submit" value="sign in" />
       </Form>
     </Formik>
