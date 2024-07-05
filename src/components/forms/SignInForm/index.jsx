@@ -12,7 +12,6 @@ const initialValues = {
 const SignInForm = (props) => {
   const onSubmit = (values, formikBag) => {
     console.log(values);
-    console.log(formikBag);
     formikBag.resetForm();
   };
   return (
@@ -22,8 +21,8 @@ const SignInForm = (props) => {
       validationSchema={SCHEMA_USER_SIGNIN}
     >
       <Form className={styles.form}>
-        <InputValidate type="email" name="email" placeholder="email" />
-        {/* <InputValidate type="password" name="password" placeholder="password" /> */}
+        <InputValidate name="email" type="email" />
+        <InputValidate name="password" type="password" />
         <input type="submit" value="sign in" />
       </Form>
     </Formik>
