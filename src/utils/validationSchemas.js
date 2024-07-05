@@ -12,7 +12,7 @@ export const NAME = Yup.string()
 export const PASSWORD = Yup.string()
   .trim()
   .required("Поле обов'язкове")
-  .matches(/^[a-z0-9]{8,16}$/);
+  .matches(/^[a-z0-9]{8,16}$/, 'Не можна використовувати великі літери');
 
 export const SCHEMA_USER_REGISTER = Yup.object({
   firstName: NAME,

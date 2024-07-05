@@ -1,12 +1,16 @@
-.form{
+.form {
   width: 250px;
   display: flex;
   flex-direction: column;
   margin: auto;
+  label {
+    display: flex;
+    flex-direction: column;
+  }
 }
-.invalid{
+.invalid {
   background-color: #ff000030;
 }
-.valid{
+.valid {
   background-color: #00ff0030;
 }

@@ -1,25 +1,52 @@
 import React from 'react';
-import { SCHEMA_USER_REGISTER } from '../../utils/validationSchemas';
+import { Field, Form, Formik, ErrorMessage } from 'formik';
+import { SCHEMA_USER_SIGNIN } from '../../utils/validationSchemas';
 
-const SignInForm = () => {
-  const user = {
-    firstName: 'brad',
-    lastName: 'Alan',
-    email: 'Alan@gmail.com',
-    password: '123qwerty',
-    age: 32,
-    isMale: true,
+import styles from './SignInForm.module.scss';
+
+const initialValues = {
+  email: '',
+  password: '',
+};
+
+const SignInForm = (props) => {
+  const onSubmit = (values, formikBag) => {
+    console.log(values);
+    console.log(formikBag);
+    formikBag.resetForm();
   };
-  console.log(
-    SCHEMA_USER_REGISTER.validate(user)
-      .then((info) => {
-        console.log(info);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      })
+  return (
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      validationSchema={SCHEMA_USER_SIGNIN}
+    >
+      {(formikProps) => {
+        //console.log(formikProps);
+        return (
+          <Form className={styles.form}>
+            <label>
+              <Field type="email" name="email" placeholder="email" />
+              <ErrorMessage
+                name="email"
+                component="span"
+                className={styles.invalid}
+              />
+            </label>
+            <label>
+              <Field type="password" name="password" placeholder="password" />
+              <ErrorMessage
+                name="password"
+                component="span"
+                className={styles.invalid}
+              />
+            </label>
+            <input type="submit" value="sign in" />
+          </Form>
+        );
+      }}
+    </Formik>
   );
-  return <></>;
 };
 
 export default SignInForm;
