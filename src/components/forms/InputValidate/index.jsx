@@ -3,28 +3,24 @@ import { ErrorMessage, Field } from 'formik';
 import cx from 'classnames';
 import styles from './InputValidate.module.scss';
 
-const InputValidate = ({ name, type, placeholder }) => {
+const CustomInput = ({ field, form: { touched, errors }, ...props }) => {
+  console.log(props);
+  const classNames = cx(styles.input, {
+    [styles.invalid]: errors[field.name] && touched[field.name],
+  });
+  return <input {...props} {...field} className={classNames} />;
+};
+
+const InputValidate = ({ name, type, placeholder, ...props }) => {
   return (
     <label className={styles.label}>
       <em>{name}</em>
-      <Field name={name}>
-        {({ field, meta, form }) => {
-          // console.log('field - пропси необхідні для роботи Field форміка', field);
-          // console.log('form - пропси необхідні для роботи Formik - The Formik bag', form);
-          //console.log('meta - корисна інфа по конкретному Field', meta);
-          const classNames = cx({
-            [styles.invalid]: meta.touched && meta.error,
-          });
-          return (
-            <input
-              className={classNames}
-              type={type}
-              placeholder={placeholder}
-              {...field}
-            />
-          );
-        }}
-      </Field>
+      <Field
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        component={CustomInput}
+      />
       <ErrorMessage name={name} component="span" className={styles.invalid} />
     </label>
   );

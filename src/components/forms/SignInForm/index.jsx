@@ -23,7 +23,7 @@ const SignInForm = (props) => {
     >
       <Form className={styles.form}>
         <InputValidate type="email" name="email" placeholder="email" />
-        <InputValidate type="password" name="password" placeholder="password" />
+        {/* <InputValidate type="password" name="password" placeholder="password" /> */}
         <input type="submit" value="sign in" />
       </Form>
     </Formik>
